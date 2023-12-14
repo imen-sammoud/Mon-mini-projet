@@ -1,42 +1,122 @@
-User
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="index.css">
-    <title>Imen Sammoud - Étudiante en Informatique</title>
-    
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="parcours.html">Aller à la page suivante</a></li>
-            
-    </nav>
-    
-    <section class="welcome">
-        <h2>Mon Portfolio</h2>
-        <h3>Imen Sammoud </h3>
-        <p>Etudiante en  informatique a ESPRIT</p>
-    </section>
-
-    <section class="image">
-                <img src="7.png"Imen Sammoud ">
-               
-                
-                
-    </section>
-
-    <nav>
-        <ul>
+  <header class="header">
+    <div id="top" class="navigation">
+      <div class="navigation__wrapper wrapper--large">
+        <nav class="navigation__container">
+          <ul class="navigation__list">
             <li><a href="index.html">Accueil</a></li>
             <li><a href="parcours.html">Parcours académiques</a></li>
             <li><a href="experiences.html">Expériences</a></li>
             <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <footer class="footer">
+    <div class="footer__wrapper wrapper--large">
+      <p class="footer__copyright no-margin">&copy; 2022 - Esprit</p>
+    </div>
+  </footer>
+  <main role="main">
+   
+    <section id="contact" class="contact">
+      <h2 class="contact__heading title">Contact Me</h2>
+       <div class="contact__wrapper wrapper--large">
+        
+        <section class="about">
+            <div class="photo">
+              <img src="7.png">
+            </div>
+            <div class="text">
+              <h3>Imen Sammoud </h3>
+              <p>Etudiante en  informatique a ESPRIT</p>
+              
+            </div>
+            
+            <section id="contact" class="contact">
+                <h2 class="contact__heading title">Contact Me</h2>
+                <div class="contact__wrapper wrapper--large">
+                    <div class="contact__visual">
+                        <img src="contact-visual.png" >
+                    </div>   
+        <form class="contact__form">
+           
+          <input class="contact__form-el contact__form-el--name" type="text" id="Name" placeholder="Your Name" spellcheck="false">
+          <p id="nameError" style="color: red;"></p>
 
-    </body>
+          <input class="contact__form-el contact__form-el--email" type="email" id="Email" placeholder="Your Email" spellcheck="false">
+          <p id="emailError" style="color: red;"></p>
+
+          <textarea class="contact__form-el contact__form-el--message" id="Message" placeholder="Your Message"></textarea>
+          <p id="messageError" style="color: red;"></p>
+
+          <input class="contact__form-el contact__form-el--submit" type="submit" value="Send">
+        </form>
+      </div>
+     
+
+    </section>
+  </main>
+
+ 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="js/functions-min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('.contact__form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var Name = document.getElementById('Name').value;
+        var Email = document.getElementById('Email').value;
+        var Message = document.getElementById('Message').value;
+        var isValid = true;
+
+        // Validate Name
+        if (Name.length < 3 || !/^[A-Za-z]+$/.test(Name)) {
+          document.getElementById('nameError').textContent = "The name must be at least 3 characters long and only contain letters.";
+          isValid = false;
+        } else {
+          document.getElementById('nameError').textContent = '';
+        }
+
+        // Validate Email
+        if (!isValidEmail(Email)) {
+          document.getElementById('emailError').textContent = "Please enter a valid email address.";
+          isValid = false;
+        } else {
+          document.getElementById('emailError').textContent = '';
+        }
+
+        // Validate Message
+        if (Message.length < 4 || !/^[A-Za-z]+$/.test(Message)) {
+          document.getElementById('messageError').textContent = "The message must be at least 4 characters long and only contain letters.";
+          isValid = false;
+        } else {
+          document.getElementById('messageError').textContent = '';
+        }
+
+        // If all validations pass, you can submit the form or take appropriate action
+        if (isValid) {
+          this.submit();
+        }
+      });
+
+      // Function to validate email format
+      function isValidEmail(email) {
+        // Simple email validation regex
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+    });
+  </script>
+</body>
 </html>
